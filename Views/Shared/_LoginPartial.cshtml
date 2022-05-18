@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNet.Identity
+@{string LoggedInId = User.Identity.GetUserId();}
+<style>
+
+    .navbar-right {
+        margin-right: 10px;
+    }
+</style>
+@if (Request.IsAuthenticated)
+{
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><img src="~/Content/Images/Icon/register.png" alt="Icon" style="width:33px;height:33px;margin-top:13px;margin-right:-12px;" /></li>
+            <li>
+                @Html.ActionLink(User.Identity.GetUserName(), "Index", "Profile", new { id = LoggedInId }, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><img src="~/Content/Images/Icon/logout.png" alt="Icon" style="width:26px;height:25px;margin-top:19px;margin-right:-10px" /></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+
+    }
+}
+else
+{
+
+    <ul class="nav navbar-nav navbar-right">
+        <li><img src="~/Content/Images/Icon/register.png" alt="Icon" style="width:33px;height:33px;margin-top:13px;margin-right:-12px;" /></li>
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li><img src="~/Content/Images/Icon/logout.png" alt="Icon" style="width:26px;height:25px;margin-top:19px;margin-right:-10px" /></li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+@*<ul class="nav navbar-nav navbar-right">
+
+                <li><a class="active" href="@Url.Action("Register", "Account", new { id = "registerLink"})"><span class="glyphicon glyphicon-user">Register</span> </a></li>
+                <li><a class="active" href="@Url.Action("Login", "Account", new {  id = "loginLink"})"><span class="glyphicon glyphicon-log-in"> Login</span> </a></li>
+
+            </ul>
+    }*@

@@ -1,0 +1,97 @@
+﻿@model List<SocialIt.Models.FriendOfUsersModel>
+
+@{
+    ViewBag.Title = "Friends";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    table, th, td, tr {
+        border: 2px solid;
+        font-size: 18px;
+    }
+
+    a.friend {
+        color: black;
+        text-decoration: none !important;
+        font-size: 18px;
+    }
+
+        a.friend:hover {
+            color: green;
+            font-weight: bolder;
+            text-decoration: none;
+            font-size: 19px;
+        }
+
+    th {
+        color: #18bc9c;
+        font-size: 20px;
+        font-weight: bolder;
+        font-family: 'Open Sans', Arial, sans-serif;
+    }
+
+    .bg-1 {
+        background-color: #c2e9ca;
+        color: black;
+        margin-top: 1%;
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-weight: bolder;
+    }
+
+   
+</style>
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+   
+    if (Model.Count() > 0)
+    {
+        <div class="container-fluid bg-1 text-center">
+            <h3>MY FRIENDS</h3>
+        </div>
+
+        <table class="table">
+
+            @foreach (var friend in Model)
+            {
+                <tr>
+
+                    <td>
+                        <div class="col-md-offset-1">
+                            @{var image = friend.Image + ".png";}
+                            <a class=" friend" href="@Url.Action("Index", "Profile", new { id = friend.FriendId })">
+                                <img src="~/Content/Images/ProfilePics/@image" alt="profile picture" height="50" width="50" object-fit="cover" border-radius="50%">
+
+                                @{var UserName = friend.FirstName + " " + friend.LastName;}
+                                <a class=" friend" href="@Url.Action("Index", "Profile", new { id = friend.FriendId })"> @UserName
+                        </div>
+                    </td>
+
+
+                    <td>
+                        @Html.ActionLink("UnFriend", "UnFriend", "FriendOfUsers", new { id = friend.FriendId }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+
+            }
+        </table>
+    }
+    else
+    {
+
+        <tr>
+            <td colspan="10">
+                <div class="container-fluid bg-2 text-center">
+                    <h2>There is no Friends to show </h2>
+                </div>
+            </td>
+        </tr>
+    }
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

@@ -1,0 +1,185 @@
+﻿@charset "UTF-8";
+/*!
+* Start Bootstrap - Freelancer v7.0.6 (https://startbootstrap.com/theme/freelancer)
+* Copyright 2013-2022 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-freelancer/blob/master/LICENSE)
+*/
+/*!
+ * Bootstrap v5.1.3 (https://getbootstrap.com/)
+ * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+:root {
+    --bs-primary-rgb: 26, 188, 156;
+    --bs-white-rgb: 24, 188, 156;
+}
+
+
+
+
+body {
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    background-color: var(--bs-body-bg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+hr:not([size]) {
+    height: 0.125rem;
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h1, .h1 {
+    font-size: calc(1.375rem + 1.5vw);
+}
+
+@media (min-width: 1200px) {
+    h1, .h1 {
+        font-size: 2.5rem;
+    }
+}
+
+h2, .h2 {
+    font-size: calc(1.325rem + 0.9vw);
+}
+
+@media (min-width: 1200px) {
+    h2, .h2 {
+        font-size: 2rem;
+    }
+}
+
+h3, .h3 {
+    font-size: calc(1.3rem + 0.6vw);
+}
+
+@media (min-width: 1200px) {
+    h3, .h3 {
+        font-size: 1.75rem;
+    }
+}
+
+h4, .h4 {
+    font-size: calc(1.275rem + 0.3vw);
+}
+
+@media (min-width: 1200px) {
+    h4, .h4 {
+        font-size: 1.5rem;
+    }
+}
+
+h5, .h5 {
+    font-size: 1.25rem;
+}
+
+h6, .h6 {
+    font-size: 1rem;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+
+
+.text-center {
+    text-align: center !important;
+}
+
+
+
+
+.text-uppercase {
+    text-transform: uppercase !important;
+}
+
+/* rtl:end:remove */
+.text-primary {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+}
+
+
+
+
+.text-white {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+}
+
+
+
+.text-white-50 {
+    --bs-text-opacity: 1;
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.bg-cover {
+    --bs-bg-opacity: 100;
+    background-image: url("Icon/Cover.png");
+    background-color: #2C3E50; /* Used if the image is unavailable */
+    height: 300px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+
+
+
+
+.masthead {
+    padding-top: calc(6rem + 74px) !important ;
+    padding-bottom: 6rem;
+}
+
+    .masthead .masthead-heading {
+        font-size: 2.75rem;
+        line-height: 2.75rem;
+    }
+
+    .masthead .masthead-subheading {
+        font-size: 1.25rem;
+    }
+
+    .masthead .masthead-avatar {
+        width: 20rem;
+    }
+
+@media (min-width: 992px) {
+    .masthead {
+        padding-top: calc(6rem + 104px);
+        padding-bottom: 6rem;
+    }
+
+        .masthead .masthead-heading {
+            font-size: 4rem;
+            line-height: 3.5rem;
+        }
+
+        .masthead .masthead-subheading {
+            font-size: 1.5rem;
+        }
+}

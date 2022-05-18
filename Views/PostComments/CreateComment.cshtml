@@ -1,0 +1,108 @@
+﻿@model SocialIt.Models.PostComment
+
+@{
+    ViewBag.Title = "Leave A Comment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+          //      @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+}
+
+
+<style>
+    .container {
+        color:white;
+        background-color: #2C3E50;
+        position:relative;
+        top:20vh;
+        padding:50px;
+    }
+    .header{
+        display:flex;
+        align-items:flex-start;
+        margin:0;
+    }
+    .content{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        
+    }
+    .input-field {
+        display: flex;
+        margin: 70px 0;
+        width: 100%;
+        
+    }
+    .submit-Button{
+        align-self:flex-end;
+    }
+    .input-container{
+        width:50%;
+    }
+    .createPostStyleFormInput {
+        margin:0;
+        display: block;
+        width: 100%;
+        height: 150px;
+        padding: 10px 15px;
+        font-size: 15px;
+        line-height: 1.42857143;
+        color: #2c3e50;
+        background-color: #ffffff;
+        background-image: none;
+        border: 1px solid #dce4ec;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    }
+
+    
+</style>
+<div class="">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.PostId, new { @Value = ViewBag.PostId, disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.PostId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.UserId, new { @Value = ViewBag.UserId, disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="content">
+            <h2 class="header">Your Comment:</h2>
+            <div class="input-field">
+                <div class="input-container">
+                    @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "createPostStyleFormInput" } })
+                    @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                </div>
+                <div class="submit-Button">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Back to Comments", "Index", new { id = ViewBag.PostId, userId = ViewBag.UserId })
+        </div>
+
+
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

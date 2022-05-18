@@ -1,0 +1,161 @@
+﻿@model SocialIt.Models.AspNetUser
+@{
+    ViewBag.Title = "Details";
+}
+
+<head>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        *:hover {
+            -webkit-transition: all 1s ease;
+            transition: all 1s ease;
+        }
+
+        .profile-card {
+            font-family: 'Open Sans', Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+            width: 50%;
+            text-align: center;
+            height: 368px;
+            border: none;
+            margin-left: 290px;
+            margin-top: 70px;
+        }
+
+            .profile-card .background-block {
+                float: left;
+                width: 100%;
+                height: 200px;
+                overflow: hidden;
+            }
+
+                .profile-card .background-block .background {
+                    width: 100%;
+                    vertical-align: top;
+                    opacity: 0.9;
+                    -webkit-filter: blur(0.5px);
+                    filter: blur(0.5px);
+                    -webkit-transform: scale(1.8);
+                    transform: scale(2.8);
+                }
+
+            .profile-card .card-content {
+                width: 100%;
+                padding: 15px 25px;
+                color: #232323;
+                float: left;
+                background: #efefef;
+                height: 100%;
+                border-radius: 0 0 5px 5px;
+                position: relative;
+                z-index: 9999;
+            }
+
+                .profile-card .card-content::before {
+                    content: '';
+                    background: #efefef;
+                    width: 120%;
+                    height: 100%;
+                    left: 11px;
+                    bottom: 51px;
+                    position: absolute;
+                    z-index: -1;
+                    transform: rotate(-10deg);
+                }
+
+            .profile-card .profile {
+                border-radius: 50%;
+                position: absolute;
+                bottom: 50%;
+                left: 50%;
+                max-width: 100px;
+                min-width: 100px;
+                min-height: 100px;
+                max-height: 100px;
+                opacity: 1;
+                box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+                border: 2px solid rgba(255, 255, 255, 1);
+                -webkit-transform: translate(-50%, -60%);
+                transform: translate(-50%, -60%);
+                z-index: 99999;
+            }
+
+            .profile-card h2 {
+                margin: 0 0 5px;
+                font-weight: 600;
+                font-size: 25px;
+            }
+
+                .profile-card h2 small {
+                    display: block;
+                    font-size: 15px;
+                    margin-top: 10px;
+                }
+    </style>
+</head>
+<div style="position: center;">
+    <div class="card profile-card" style="height: 500px;">
+        <div class="background-block">
+            <img src="~/Content/Images/Background Images/CoverPhoto.jpeg" alt="Cover-Photo" class="background" />
+        </div>
+        <div class="profile-thumb-block">
+            @{var image = Model.Image + ".png";}
+            <img src="~/Content/Images/ProfilePics/@image" alt="Profile-Image" class="profile" />
+        </div>
+        <div class="card-content" style="height: 300px;">
+            <h2>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h2>
+
+            <dl class="dl-horizontal" style="margin-top:20px;font-size: medium;">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd style="text-align: left">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
+
+                <dd style="text-align: left">
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+
+                <dd style="text-align: left">
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Country)
+                </dt>
+
+                <dd style="text-align: left">
+                    @Html.DisplayFor(model => model.Country)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DateOfBirth)
+                </dt>
+
+                <dd style="text-align: left">
+                    @Html.DisplayFor(model => model.DateOfBirth)
+                </dd>
+            </dl>
+
+            <ul class="pager" style="margin-top: 60px;margin-left: -10px;">
+                <li class="previous col-md-2">@Html.ActionLink("Back", "Index", "Profile", new { id = Model.Id }, null)</li>
+                <li class="previous col-md-2" style="margin-left: -10px;">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</li>
+                <li class="previous col-md-5" style="margin-left: -20px;">@Html.ActionLink("Change Password", "ChangePassword", "Manage", new { id = Model.Id }, null)</li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@model SocialIt.Models.PostComment
+
+@{
+    ViewBag.Title = "DeleteComment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .container {
+        width: 80%;
+        background-color: #18BC9C;
+        display: flex;
+        flex-direction: column;
+        margin: 15vh auto;
+    }
+    .delete-button {
+        background-color: #EA1B15;
+    }
+    .delete-button:hover {
+        background-color: #DA1B15;
+    }
+    .content{
+        margin:40px 0 0 0;
+        display: flex;
+        justify-content:space-between;
+    }
+    .content a {
+        color: #2C3E50;
+        font-size: 19px;
+        text-decoration: underline;
+    }
+
+</style>
+
+<div class="container">
+
+
+    <h3>Are you sure you want to delete this?</h3>
+
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color content">
+            <input type="submit" value="Delete" class="btn btn-default delete-button" />
+            @Html.ActionLink("Back to Comments", "Index", new { id = ViewBag.PostId, userId = ViewBag.UserId })
+        </div>
+        }
+    </div>
+</div>

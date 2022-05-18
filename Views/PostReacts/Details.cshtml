@@ -1,0 +1,53 @@
+﻿@model List<SocialIt.Models.UserReactModel>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3></h3>
+<h3></h3>
+<table class="table table-responsive table-bordered">
+    @{ if (Model.Count() > 0)
+        {
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>React</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var x in Model)
+                    {
+                        <tr>
+                           <td>@{var UserName = x.FirstName + " " + x.LastName;}
+                            @UserName</td>
+                            @if (x.React == true)
+                            {
+                                <td class="btn btn-success btn-sm glyphicon glyphicon-thumbs-up"></td>
+                            }
+                            else
+                            {
+                                <td class="btn btn-danger btn-sm glyphicon glyphicon-thumbs-down"></td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        }
+        else
+        {
+
+           
+                <tr>
+                    <td colspan="10">
+                        <div class="container-fluid bg-2 text-center">
+                            <h2>There is no reacts to show </h2>
+                        </div>
+                    </td>
+                </tr>
+                
+            }
+        }
+
+    </table>

@@ -1,0 +1,123 @@
+﻿@using SocialIt.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<head>
+    <style>
+        .login-block {
+            float: left;
+            width: 100%;
+            padding: 50px 0;
+        }
+
+        .banner-sec {
+            background: url('../../Content/Images/Background Images/44.png') no-repeat;
+            background-size: cover;
+            min-height: 520px;
+            border-radius: 0 10px 10px 0;
+            padding: 0;
+        }
+
+        .containerx {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 15px 20px 0px rgba(0,0,0,0);
+        }
+
+        .login-sec {
+            padding: 20px 30px;
+            position: relative;
+        }
+
+        .login-sec .copy-text {
+            position: absolute;
+            width: 80%;
+            bottom: 20px;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        .login-sec .copy-text a {
+            color: #18bc9c;
+        }
+
+        .login-sec h2 {
+            margin-bottom: 30px;
+            font-weight: 800;
+            font-size: 30px;
+            color: #18bc9c;
+            margin-left: 50px;
+        }
+
+            .login-sec h2:after {
+                content: " ";
+                width: 100px;
+                height: 5px;
+                background: #FEB58A;
+                display: block;
+                margin-top: 20px;
+                border-radius: 3px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+    </style>
+</head>
+<br />
+<section class="login-block">
+    <div class="containerx">
+        <div class="row">
+            <div class="col-md-4 login-sec">
+                <h2 class="text-center">Login Now</h2>
+                <section class="login-form" style="margin-left: 50px;">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="text-uppercase">@Html.LabelFor(m => m.Email, new { @class = "col-md-2" })</label>
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-uppercase login-label">@Html.LabelFor(m => m.Password, new { @class = "col-md-2" })</label>
+                            <div class="col-md-12">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label class="form-check-label">
+                                    @Html.CheckBoxFor(m => m.RememberMe)&nbsp &nbsp
+                                    <small>@Html.LabelFor(m => m.RememberMe)</small>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="submit" value="Log in" class="btn btn-success" style="margin-bottom: 40px; float: right;" />
+                            </div>
+                        </div>
+
+                        <div class="copy-text">
+                            <p>
+                                @Html.ActionLink("Register as a new user", "Register")
+                            </p>
+                        </div>
+                    }
+                </section>
+            </div>
+            <div class="col-md-8 banner-sec"></div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

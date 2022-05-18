@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SocialIt.Models.Post>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+
+    <!--Retrieve posts in reverse order-->
+    @{
+        Stack<int> pid = new Stack<int>();
+        List<string> friendsId = new List<string>();
+        foreach (var friend in ViewBag.myFriends)
+        {
+            friendsId.Add(friend);
+        }
+        foreach (var post in Model) //push postId to stack if mine/friend/public
+        {
+            if (post.UserId == ViewBag.myId || post.Visibility == "public" || (friendsId.Contains(post.UserId) && post.Visibility == "friendOnly")) //check if my post || public || poster is my friend
+            {
+                pid.Push(post.PostId);
+            }
+        }
+        if (pid.Count() > 0)
+        {
+            <hr style="border:0px" />
+            while (pid.Count > 0)
+            {
+                Html.RenderAction("Details", "Posts", new { id = pid.Pop(), myId = ViewBag.myId });
+                <hr />
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="10">
+                    <div class="container-fluid bg-2 text-center">
+                        <h2>There is no posts to show </h2>
+                    </div>
+                </td>
+            </tr>
+        }
+    }
+</div>

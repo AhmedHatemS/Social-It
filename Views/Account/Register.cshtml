@@ -1,0 +1,157 @@
+﻿@model SocialIt.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<head>
+    <style>
+        .register-block {
+            float: left;
+            width: 100%;
+            padding: 30px 0;
+        }
+
+        .banner-sec {
+            background: url('../../Content/Images/Background Images/44.png') no-repeat center;
+            background-size: contain;
+            min-height: 570px;
+            border-radius: 0 10px 10px 0;
+            padding: 0;
+        }
+
+        .containerx {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 15px 20px 0px rgba(0,0,0,0);
+        }
+
+        .register-sec {
+            padding: 0 15px 0 0;
+            position: relative;
+            margin-top: -20px;
+        }
+
+            .register-sec h2 {
+                margin-bottom: 30px;
+                font-weight: 800;
+                font-size: 30px;
+                color: #18bc9c;
+            }
+
+                .register-sec h2:after {
+                    content: " ";
+                    width: 125px;
+                    height: 5px;
+                    background: #FEB58A;
+                    display: block;
+                    margin-top: 20px;
+                    border-radius: 3px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+        .register-label {
+            padding-top: 20px;
+        }
+
+        .input1 {
+            margin-top: 30px;
+            margin-left: -201px;
+        }
+
+        .input2 {
+            margin-top: 30px;
+            margin-left: -202px;
+        }
+    </style>
+</head>
+<br />
+<section class="register-block">
+    <div class="containerx">
+        <div class="row">
+            <div class="col-md-4 register-sec">
+                <h2 class="text-center">Register Now</h2>
+                <section class="login-form">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data " }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                        <div class="form-group" style="display: flex;">
+                            <label class="text-uppercase col-md-6">@Html.LabelFor(m => m.FirstName)</label>
+                            <div class="col-md-6 input1">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control input-sm" })
+                            </div>
+
+                            <label class="text-uppercase col-md-6">@Html.LabelFor(m => m.LastName)</label>
+                            <div class="col-md-6 input2">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control input-sm" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display: flex;">
+                            <label class="text-uppercase col-md-6">@Html.LabelFor(m => m.Email)</label>
+                            <div class="col-md-6 input1">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-sm" })
+                            </div>
+
+                            <label class="text-uppercase col-md-6">@Html.LabelFor(m => m.PhoneNumber)</label>
+                            <div class="col-md-6 input2">
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control input-sm" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display: flex;">
+                            <label class="text-uppercase col-md-6">@Html.LabelFor(m => m.City)</label>
+                            <div class="col-md-6 input1">
+                                @Html.TextBoxFor(m => m.City, new { @class = "form-control input-sm" })
+                            </div>
+
+                            <label class="text-uppercase col-md-6">@Html.LabelFor(m => m.Country)</label>
+                            <div class="col-md-6 input2">
+                                @Html.TextBoxFor(m => m.Country, new { @class = "form-control input-sm" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display: flex;">
+                            <label class="text-uppercase col-md-6">@Html.LabelFor(m => m.DateOfBirth)</label>
+                            <div class="col-md-6 input1">
+                                @Html.EditorFor(m => m.DateOfBirth, new { @class = "form-control input-sm" })
+                            </div>
+
+                            <label class="text-uppercase col-md-6">@Html.LabelFor(m => m.Gender)</label>
+                            <div class="col-md-6 input2">
+                                @Html.RadioButtonFor(m => m.Gender, "True") Male
+                                &nbsp &nbsp
+                                @Html.RadioButtonFor(m => m.Gender, "False") Female
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display: flex;">
+                            <label class="text-uppercase col-md-6">@Html.LabelFor(m => m.Password)</label>
+                            <div class="col-md-6 input1">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control input-sm" })
+                            </div>
+
+                            <label class="text-uppercase col-md-6">@Html.LabelFor(m => m.ConfirmPassword)</label>
+                            <div class="col-md-6 input2">
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control input-sm" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="submit" value="Register" class="btn btn-success" style="float: right;" />
+                            </div>
+                        </div>
+                    }
+                </section>
+            </div>
+            <div class="col-md-8 banner-sec"></div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

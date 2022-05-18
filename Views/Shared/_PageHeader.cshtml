@@ -1,0 +1,57 @@
+﻿
+
+@{
+    ViewBag.Title = "_PageHeader";
+}
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-asterisk">Social-It</span></a>
+        </div>
+
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav">
+
+                <li class="divider">@Html.ActionLink("Create Post", "CreatePost", "Posts")</li>
+                <li class="divider">@Html.ActionLink("Friends", "ShowAllFriends", "FriendOfUsers")</li>
+                <li class="divider">@Html.ActionLink("FriendRequest", "ShowAllFriendRequest", "FriendRequests")</li>
+
+
+                <li>
+                    @using (@Html.BeginForm("SearchForFriend", "Search", FormMethod.Get))
+                    {
+                        <form class="form-inline">
+                            <div class="nav navbar-nav navbar-form">
+                                <b>SearchBY</b>
+                                @Html.RadioButton("searchBy", "Email", true) <text>
+                                    Email
+                                </text>
+                                @Html.RadioButton("searchBy", "Phone", true) <text>
+                                    Phone
+                                </text>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search" name="search">
+                                </div>
+                                <input type="submit" value="search" class="btn btn-default" />
+                            </div>
+                        </form>
+
+                    }
+                </li>
+            </ul>
+
+
+            @Html.Partial("_LoginPartial")
+        </div>
+
+    </div>
+</nav>

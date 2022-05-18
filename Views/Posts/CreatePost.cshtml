@@ -1,0 +1,95 @@
+﻿@model SocialIt.Models.Post
+
+@{
+    /**/
+
+    ViewBag.Title = "Create Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .btn.btn-success {
+        width: 70%;
+    }
+    .bg-1
+    {
+        background-color: #c2e9ca;
+        color: #ffffff;
+        margin-top: 1%;
+    }
+    a.Back {
+        color: white;
+        text-decoration: none !important;
+    }
+</style>
+<div class="container-fluid bg-1 text-center">
+    <h2>Create Your Own Post</h2>
+</div>
+
+
+
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.Content, "Content Of post", htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+            <br />
+            <br />
+            <div class="col-md-offset-2 col-md-1">
+
+                @Html.TextAreaFor(model => model.Content, new
+            {
+               htmlAttributes = new
+               {
+                   @class = "Formtext",
+
+                   @rows="5",
+                   @id ="textArea"
+
+               }
+           })
+
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div>
+                @Html.LabelFor(model => model.Visibility, htmlAttributes: new { @class = "control-label  col-md-offset-1 col-md-1" })
+                <div class=" col-md-offset-2 col-md-10">
+                    private
+                    @Html.RadioButtonFor(model => model.Visibility, "private")
+                    public
+                    @Html.RadioButtonFor(model => model.Visibility, "public")
+                    friendsOnly
+                    @Html.RadioButtonFor(model => model.Visibility, "friendOnly")
+                </div>
+                @Html.ValidationMessageFor(model => model.Visibility, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Share" class="btn btn-success " onclick="javascript: return CloseWindow();" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="btn btn-warning">
+  <a class="Back" @Html.ActionLink("Back to Home", "Index")</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

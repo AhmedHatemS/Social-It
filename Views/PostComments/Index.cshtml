@@ -1,0 +1,93 @@
+﻿@model IEnumerable<SocialIt.Models.PostComment>
+
+@{
+    ViewBag.Title = "Comments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    
+    .conatiner {
+        width: 80%;
+        background-color: #18BC9C;
+        display:flex;
+        flex-direction:column;
+        padding:20px;
+        margin: 20px auto;
+    }
+    .top-content{
+        display:flex;
+        justify-content:space-between;
+        font-size:25px;
+    }
+    .link {
+        margin-right: 20px;
+    }
+        .link a {
+            color: #2C3E50;
+            text-decoration:underline;
+        }
+    .delete-link a {
+        color: #EA1B15;
+        text-decoration: underline;
+    }
+    .comments {
+        margin: 20px 0;
+    }
+    .comment {
+        margin:5px;
+        padding:10px;
+        background-color: #2C3E50;
+    }
+    .comment-head {
+        color: #18BC88;
+        display:flex;
+        justify-content:space-between;
+        align-items:center
+    }
+    .comment-content{
+        color:white;
+        margin:10px 0;
+        font-size:19px;
+    }
+    .return-button {
+        margin: 20px 0 0 0;
+    }
+    .return-button a {
+        
+        color: #2C3E50;
+        font-size: 20px;
+    }
+</style>
+
+
+
+    <div class="conatiner table">
+        <div class="top-content">
+            <div class="title">Comments</div>
+            <div class="link">@Html.ActionLink("Leave A Comment!", "CreateComment", new { postId = ViewBag.currentPostId, userId = ViewBag.currentUserId })</div>
+        </div>
+        <div class="comments">
+            @foreach (var item in Model)
+            {
+            <div class="comment">
+                <div class="comment-head">
+                    <div>@Html.DisplayFor(modelItem => item.AspNetUser.Email)</div>
+                    @if (item.UserId == ViewBag.currentUserId)
+                    {
+                    <div class="delete-link">@Html.ActionLink("Delete Your Comment", "Delete", new { id = item.Id, postId = ViewBag.currentPostId, userId = ViewBag.currentUserId })</div>
+                    }
+                </div>
+                
+                <div class="comment-content">@Html.DisplayFor(modelItem => item.Comment)</div>
+                
+
+            </div>  
+            }
+        </div>
+        <div class="return-button">
+            <a href="@Url.Action("Index", "Posts")">Return To posts</a>
+        </div>
+    </div>
+
+

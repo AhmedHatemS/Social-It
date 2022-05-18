@@ -1,0 +1,124 @@
+﻿@model List<SocialIt.Models.SearchModel>
+@{
+    ViewBag.Title = "Search For Friends";
+}
+
+<style>
+    .bg-1 {
+        background-color: #c2e9ca;
+        color: black;
+        margin-top: 1%;
+    }
+
+    .bg-2 {
+        background-color: #474e5d;
+        color: #ffffff;
+        margin-top: 20%;
+    }
+
+    table, tr {
+        border: 2px solid;
+    }
+
+    a.aimage {
+        color: forestgreen;
+        font-weight: bold;
+        position: center;
+    }
+
+    a.Name {
+        color: black;
+        text-decoration: none !important;
+        font-size: 18px;
+    }
+
+        a.Name:hover {
+            color: green;
+            font-weight: bolder;
+            text-decoration: none;
+            font-size: 19px;
+        }
+</style>
+
+
+@if (Model.Count() == 0)
+{
+    <tr>
+        <td colspan="10">
+            <div class="container-fluid bg-2 text-center">
+                <h2>NO Friend Found </h2>
+            </div>
+        </td>
+    </tr>
+}
+
+
+else
+{
+    <div class="container-fluid bg-1 text-center">
+        <h3>Friend That You Search About</h3>
+    </div>
+
+    <table class="table">
+        @foreach (var DataFromSearch in Model)
+        {
+            <tr>
+                <td class="align_middle">
+                    <div class="col-md-offset-1">
+
+                        @{var imageUrl = DataFromSearch.ProfileImage + ".png";}
+                        <a href="@Url.Action("Index", "Profile", new { id = DataFromSearch.ProfileUserId })"><img src="~/Content/Images/ProfilePics/@imageUrl" alt="profile picture" height="50" width="50" object-fit="cover" border-radius="50%"></a>
+
+                        @{var UserName = DataFromSearch.ProfileFirstName + " " + DataFromSearch.ProfileLastName;}
+                        <a class="Name" href="@Url.Action("Index", "Profile", new { id = DataFromSearch.ProfileUserId })">@UserName</a>
+                    </div>
+                </td>
+
+
+
+                <td class="align-middle">
+                    @{
+                        bool isFriend = false;
+                        bool request = false;
+
+
+                        if (DataFromSearch.ProfilefriendId == ViewBag.id)
+                        {
+
+                            isFriend = true;
+                        }
+
+                        else if (DataFromSearch.ProfilefriendId != ViewBag.id && DataFromSearch.ProfileRequest == DataFromSearch.ProfileUserId && DataFromSearch.ProfileRequester == ViewBag.id)
+                        {
+                            request = true;
+                        }
+
+                        if (request)
+                        {
+                            <p style="padding-top:2%;">
+                                @Html.ActionLink("Cancel request", "CancelRequest", "FriendRequests", new { id = DataFromSearch.ProfileUserId }, new { @class = "btn btn-warning" })
+                            </p>
+                        }
+                        else if (isFriend)
+                        {
+                            <p style="padding-top:2%;">
+
+                                @Html.ActionLink("Unfriend", "UnFriend", "FriendOfUsers", new { id = DataFromSearch.ProfileUserId, Profile = false }, new { @class = "btn btn-danger" })
+                            </p>
+
+                        }
+                        else
+                        {
+                            <p style="padding-top:2%;">
+
+                                @Html.ActionLink("Add Friend", "SendRequest", "FriendRequests", new { Id = DataFromSearch.ProfileUserId , Profile = false, searchBy = ViewBag.searchBy, search = ViewBag.search }, new { @class = "btn btn-info" })
+
+                            </p>
+
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}

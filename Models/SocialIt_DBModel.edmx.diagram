@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cc660e7da9c949b2b3dbea6397f95ec0" Name="Diagram1">
+        <EntityTypeShape EntityType="SocialIt_DBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialIt_DBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialIt_DBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialIt_DBModel.AspNetUser" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialIt_DBModel.FriendOfUser" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialIt_DBModel.FriendRequest" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialIt_DBModel.Post" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialIt_DBModel.PostComment" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocialIt_DBModel.PostReact" Width="1.5" PointX="7.5" PointY="13.375" IsExpanded="true" />
+        <AssociationConnector Association="SocialIt_DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialIt_DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialIt_DBModel.FK__FriendOfU__Frien__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialIt_DBModel.FK__FriendOfU__UserI__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialIt_DBModel.FK__FriendReq__Reque__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialIt_DBModel.FK__FriendReq__UserI__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialIt_DBModel.FK__Post__UserId__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialIt_DBModel.FK__PostComme__UserI__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialIt_DBModel.FK__PostReact__UserI__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialIt_DBModel.FK__PostComme__PostI__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialIt_DBModel.FK__PostReact__PostI__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="SocialIt_DBModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
