@@ -12,3 +12,6 @@ Basic social media web application based on  ASP.NET 4.8 MVC
 - George Elamir 
 - Yahia Osama
 
+## Preview
+
+https://youtu.be/ah4wHqz9iuo
